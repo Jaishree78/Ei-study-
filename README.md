@@ -26,5 +26,5 @@ This repository contains my solutions for **two exercises**:
 A console-based simulation of controlling a satellite in orbit.  
 Implements **Command, Factory, Observer, Decorator, Singleton-style config**.
 
-👉 See [`Exercise2-satellite-command-system/`](exercise2-satellite-command-system) for full implementation.
+👉 See [`Exercise-2/`](exercise2-satellite-command-system) for full implementation.
 
