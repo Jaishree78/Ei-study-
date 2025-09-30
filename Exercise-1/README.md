@@ -1,107 +1,101 @@
-1. Observer Pattern – Astronaut Task Conflict Notification 
+📂 Design Patterns Implemented
+1. 🛰️ Observer Pattern – Astronaut Task Conflict Notification
 
-Problem
-
+Problem:
 Astronauts schedule tasks daily. If a new task conflicts with an existing one, multiple systems (like Alert System and Log System) must be notified immediately.
 
-Solution
+Solution:
 
-Observer Pattern:
+Subject: ScheduleManager
 
-ScheduleManager = Subject
-
-AlertSystem, LogSystem = Observers
+Observers: AlertSystem, LogSystem
 
 When a conflict is detected, all observers are notified automatically.
 
-2. Strategy Pattern – Task Sorting / Payment Switching
-   
-Problem
+🔑 Decouples task scheduling from alerting & logging.
 
-Astronauts’ daily tasks may need sorting in different ways:
+2. 🗂️ Strategy Pattern – Task Sorting / Payment Switching
 
-By time (for daily planning)
+Problem:
+Astronaut tasks may need sorting in different ways:
 
-By priority (for emergencies)
+By time (daily planning)
 
-By duration (for efficient scheduling)
+By priority (emergencies)
+
+By duration (efficiency)
 
 Hardcoding one sort order would be rigid.
 
-Solution
-
-Strategy Pattern:
+Solution:
 
 SortStrategy interface
 
-SortByTime, SortByPriority, SortByDuration strategies
+Implementations: SortByTime, SortByPriority, SortByDuration
 
-TaskSorter context dynamically applies chosen strategy
+TaskSorter context applies the chosen strategy dynamically.
 
-3. Singleton Pattern – Mission Control Center
+🔑 Allows switching sorting logic at runtime without modifying core code.
 
-Problem
+3. 🎯 Singleton Pattern – Mission Control Center
 
+Problem:
 There must be only one Mission Control Center.
-If multiple instances exist, conflicting commands may be sent to the satellite.
+Multiple instances could send conflicting commands to satellites.
 
-Solution
-
-Singleton Pattern (Bill Pugh Method):
+Solution (Bill Pugh Singleton):
 
 MissionControl has a private constructor.
 
-Inner static Holder class ensures lazy initialization + thread safety.
+Static inner Holder class ensures lazy initialization + thread safety.
 
-4. Factory Pattern – Creating Astronaut Roles
-   
-Problem
+🔑 Guarantees a single, globally accessible Mission Control instance.
 
+4. 👩‍🚀 Factory Pattern – Creating Astronaut Roles
+
+Problem:
 Astronaut roles (Pilot, Engineer, Scientist) must be created dynamically.
 Using new everywhere would be repetitive and hard to maintain.
 
-Solution
-
-Factory Pattern:
+Solution:
 
 Abstract class: Astronaut
 
 Concrete classes: Pilot, Engineer, Scientist
 
-Factory: AstronautFactory
+AstronautFactory creates roles based on input.
 
-5. Adapter Pattern – Legacy Task Integration
-   
-Problem
+🔑 Centralizes and simplifies object creation for different astronaut roles.
 
+5. 🔌 Adapter Pattern – Legacy Task Integration
+
+Problem:
 The old NASA system stores tasks as plain text strings.
-The new system requires Task objects with methods.
-They are incompatible.
+The new system requires structured Task objects with methods.
 
-Solution
+Solution:
 
-Adapter Pattern:
+LegacyTask = old format (plain text)
 
-LegacyTask = old format
+Task = new structured format
 
-Task = new format
+LegacyTaskAdapter bridges the old system to the new one.
 
-LegacyTaskAdapter bridges old → new
+🔑 Enables backward compatibility while moving to modern systems.
 
-6. Decorator Pattern – Adding Features to Tasks
-   
-Problem
+6. ⏰ Decorator Pattern – Adding Features to Tasks
 
-We want to add reminders, logging, or notifications to tasks, but we don’t want to keep changing the Task class.
+Problem:
+We want to add reminders, logging, or notifications to tasks without modifying the core Task class.
 
-Solution
-
-Decorator Pattern:
+Solution:
 
 TaskComponent interface
 
-BaseTask = core implementation
+BaseTask = core task implementation
 
 TaskDecorator = abstract wrapper
 
-ReminderDecorator and LoggingDecorator add extra features dynamically
+ReminderDecorator, LoggingDecorator add features dynamically.
+
+🔑 Extends functionality at runtime while following Open/Closed Principle.
